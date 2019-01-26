@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="com.beans">  <!-- 实体类的包名 -->
+	<class name="Teacher" table="t_teacher"> <!-- 实体类名和数据库表的名字 -->
+		<id name="id"> <!-- name值为实体类中的属性名 -->
+			<generator class="native"></generator><!-- native 指定主键生成策略 -->
+		</id>
+		
+		<property name="teaName"></property><!--实体类的属性名 -->
+		<set name="stuSet" table="stu_tea">
+			<key column="teacher_Id"></key>
+			<many-to-many class="Student" column="student_Id"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="com.beans">  <!-- 实体类的包名 -->
+	<class name="NiGuAn" table="t_niguan"> <!-- 实体类名和数据库表的名字 -->
+		<id name="id"> <!-- name值为实体类中的属性名 -->
+			<generator class="native"></generator><!-- native 指定主键生成策略 -->
+		</id>
+		
+		<property name="name"></property><!--实体类的属性名 -->
+		<!-- <set name="niguSet">
+			<key column="niguanId"></key> 数据库外键的名字
+			<one-to-many class="NiGu"/> 类名
+		</set> -->
+		<!-- <list name="niguList">
+			<key column="niguanId"></key>
+			因为list集合有索引,Hinbernate认为你用list集合是保证顺序的,所以会在表中生成一个索引字段
+			<index column="indexNo"></index>
+			<one-to-many class="NiGu"/>
+		</list> -->
+		<bag name="niguList">
+			<key column="niguanId"></key>
+			<one-to-many class="NiGu"/>
+		</bag>
+	</class>
+</hibernate-mapping>
